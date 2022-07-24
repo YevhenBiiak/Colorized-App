@@ -13,6 +13,9 @@ protocol ColorizeViewControllerDelegate: AnyObject {
 
 class ColorizeViewController: UIViewController {
     // MARK: - Outlets
+    @IBOutlet weak var warningView: UIView!
+    @IBOutlet weak var warninLabel: UILabel!
+    
     @IBOutlet weak var paintedView: UIView!
     
     @IBOutlet weak var redComponentLabel: UILabel!
@@ -23,6 +26,10 @@ class ColorizeViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     
+    @IBOutlet weak var redTextField: UITextField!
+    @IBOutlet weak var greenTextField: UITextField!
+    @IBOutlet weak var blueTextField: UITextField!
+    
     // MARK: - Properties
     var color: UIColor!
     
@@ -31,6 +38,10 @@ class ColorizeViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
+        warningView.alpha = 0
+        
+        setupTextFields()
         updateViews(withColor: color)
     }
     
@@ -75,13 +86,45 @@ class ColorizeViewController: UIViewController {
         updateViews(withColor: UIColor(red: red, green: green, blue: blue, alpha: 1))
     }
     
-    @IBAction func clearButtonTapped() {
-        updateViews(withColor: .white)
-    }
-    
     @IBAction func doneButtonTapped(_ sender: Any) {
         delegate?.updateViewColor(with: paintedView.backgroundColor!)
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        guard let red = Float(redTextField.text!.isEmpty ? "0" : redTextField.text!), red <= 1.0 else {
+            showWarning("Red component is should be from 0.0 to 1.0")
+            return
+        }
+        guard let green = Float(greenTextField.text!.isEmpty ? "0" : greenTextField.text!), green <= 1.0 else {
+            showWarning("Green component is should be from 0.0 to 1.0")
+            return
+        }
+        guard let blue = Float(blueTextField.text!.isEmpty ? "0" : blueTextField.text!), blue <= 1.0 else {
+            showWarning("Blue component is should be from 0.0 to 1.0")
+            return
+        }
+        hideWorning()
+        updateViews(withColor: UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1))
+    }
+}
+
+// MARK: Private methods
+extension ColorizeViewController {
+    private func setupTextFields() {
+        redTextField.addKeyboardToolbarButton(
+            UIBarButtonItem(title: "Done", style: .done, target: nil, action: #selector(dismissKeyboard)),
+            position: .right)
+        greenTextField.addKeyboardToolbarButton(
+            UIBarButtonItem(title: "Done", style: .done, target: nil, action: #selector(dismissKeyboard)),
+            position: .right)
+        blueTextField.addKeyboardToolbarButton(
+            UIBarButtonItem(title: "Done", style: .done, target: nil, action: #selector(dismissKeyboard)),
+            position: .right)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     private func updateViews(withColor color: UIColor) {
@@ -94,5 +137,27 @@ class ColorizeViewController: UIViewController {
         redSlider.value = Float(color.rgba.red)
         greenSlider.value = Float(color.rgba.green)
         blueSlider.value = Float(color.rgba.blue)
+        
+        if !redTextField.isFirstResponder {
+            redTextField.text = String(format:"%.2f", color.rgba.red)
+        }
+        if !greenTextField.isFirstResponder {
+            greenTextField.text = String(format:"%.2f", color.rgba.green)
+        }
+        if !blueTextField.isFirstResponder {
+            blueTextField.text = String(format:"%.2f", color.rgba.blue)
+        }
+    }
+    
+    private func showWarning(_ text: String) {
+        warninLabel.text = text
+        UIView.animate(withDuration: 0.3) {
+            self.warningView.alpha = 1
+        }
+    }
+    private func hideWorning() {
+        UIView.animate(withDuration: 0.3) {
+            self.warningView.alpha = 0
+        }
     }
 }

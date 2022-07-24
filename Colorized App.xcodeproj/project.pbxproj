@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5781E184288C7A84001842E1 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E183288C7A84001842E1 /* UIColor+.swift */; };
+		5781E186288D5CCD001842E1 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E185288D5CCD001842E1 /* UITextField+.swift */; };
 		57A26E63288C6A830094A2C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A26E62288C6A830094A2C3 /* AppDelegate.swift */; };
 		57A26E65288C6A830094A2C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A26E64288C6A830094A2C3 /* SceneDelegate.swift */; };
 		57A26E67288C6A830094A2C3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A26E66288C6A830094A2C3 /* MainViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		5781E183288C7A84001842E1 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		5781E185288D5CCD001842E1 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		57A26E5F288C6A830094A2C3 /* Colorized App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Colorized App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A26E62288C6A830094A2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57A26E64288C6A830094A2C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				57A26E66288C6A830094A2C3 /* MainViewController.swift */,
 				57A26E76288C6FE50094A2C3 /* ColorizeViewController.swift */,
 				5781E183288C7A84001842E1 /* UIColor+.swift */,
+				5781E185288D5CCD001842E1 /* UITextField+.swift */,
 				57A26E68288C6A830094A2C3 /* Main.storyboard */,
 				57A26E6B288C6A860094A2C3 /* Assets.xcassets */,
 				57A26E6D288C6A860094A2C3 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				57A26E67288C6A830094A2C3 /* MainViewController.swift in Sources */,
 				57A26E77288C6FE50094A2C3 /* ColorizeViewController.swift in Sources */,
 				57A26E63288C6A830094A2C3 /* AppDelegate.swift in Sources */,
+				5781E186288D5CCD001842E1 /* UITextField+.swift in Sources */,
 				57A26E65288C6A830094A2C3 /* SceneDelegate.swift in Sources */,
 				5781E184288C7A84001842E1 /* UIColor+.swift in Sources */,
 			);
